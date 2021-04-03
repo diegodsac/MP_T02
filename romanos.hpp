@@ -27,7 +27,26 @@ static int RomanToInt(char c) {
   return -1;
 }
 
-int ArabicToRoman(char* s) {}
+//Funcao para converter a string
+int ArabicToRoman(char* s) {
+  int i, int_num = RomanToInt(s[0]);
+  //For para separar e escolher o caracter
+  for (i = 1; s[i] != '\0'; i++)
+  {
+    int prev_num = RomanToInt(s[i - 1]);
+    int cur_num = RomanToInt(s[i]);
+    //Caso o caracter for anterior subtrai e caso posterior coma
+    if (prev_num < cur_num)
+    {
+      int_num = int_num - prev_num + (cur_num - prev_num);
+    }
+    else
+    {
+      int_num += cur_num;
+    }
+  }
+  return int_num;
+}
 
 // Checar se as condições
 // Cada letra so pode se repetir tres vezes seguidas.
